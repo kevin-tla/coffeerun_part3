@@ -1,5 +1,4 @@
-Assignment 6
+Assignment 7
 
-Adding BootStrap and jQuery to CoffeeRun
-
-Reading for Ch9 and Ch10
+Reading Ch11 and Ch12.
+Adds in form handling and validations for inputs.
