@@ -5,6 +5,7 @@
     var $ = window.jQuery;
 
     var currentSliderValue;
+
     function FormHandler(selector) {
         if (!selector) {
             throw new Error('No selector provided');
@@ -170,9 +171,14 @@
     FormHandler.prototype.addInputHandlerSilverChallenge = function(fn1, fn2) {
         console.log('Listener to validate slider + coffee is up');
 
+
+
         this.$formElement.on('input', '[name="coffee"]', function(event) {
             var coffeeisdecaf = event.target.value;
             var message = '';
+
+
+
 
             //Checks to see if the inputted value is 'decaf', if isnt does not do anything
             if (fn1(coffeeisdecaf)) {
@@ -185,6 +191,7 @@
 
                 }
             }
+
 
         });
 

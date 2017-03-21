@@ -9,16 +9,13 @@
         //Silver Challenge Assignment 7
         isDecaf: function(coffee) {
             return 'decaf' === coffee.toLowerCase();
+
         },
         isStrength: function(strength) {
             return strength < 20;
         }
 
     };
-
-
-
-
 
 
     App.Validation = Validation;
