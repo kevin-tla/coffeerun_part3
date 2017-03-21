@@ -4,7 +4,7 @@
 
     var $ = window.jQuery;
 
-
+    var currentSliderValue;
     function FormHandler(selector) {
         if (!selector) {
             throw new Error('No selector provided');
@@ -101,7 +101,7 @@
             fn(data);
 
             //Resets the info put in form
-
+            this.reset();
 
             /*
               Same as autofocus, but after resets, goes back to the first form elements[0]
@@ -136,6 +136,9 @@
             }
 
             visual.value = mouse.value;
+
+            //Part of Silver Challenge Assignment 7
+            currentSliderValue = mouse.value;
             visual.style.color = color;
         });
 
@@ -165,22 +168,22 @@
 
     //For Silver Challenge Assignment 7
     FormHandler.prototype.addInputHandlerSilverChallenge = function(fn1, fn2) {
-        console.log('starting to validate slider + coffee order');
+        console.log('Listener to validate slider + coffee is up');
 
         this.$formElement.on('input', '[name="coffee"]', function(event) {
             var coffeeisdecaf = event.target.value;
-            var coffeestrengthlv = document.getElementById('strengthLevel').value;
-
-            console.log(coffeestrengthlv);
-            fn2(coffeestrengthlv);
             var message = '';
 
-            if (fn1(coffeeisdecaf) && fn2(coffeestrengthlv)) {
-                console.log('yay');
-                event.target.setCustomValidity('');
-            } else {
-                message = coffeeisdecaf + ' is not decaf.';
-                event.target.setCustomValidity(message);
+            //Checks to see if the inputted value is 'decaf', if isnt does not do anything
+            if (fn1(coffeeisdecaf)) {
+                if (fn1(coffeeisdecaf) && fn2(currentSliderValue)) {
+                    console.log('Looking for coffee strength now...');
+                    event.target.setCustomValidity('');
+                } else {
+                    message = 'Decaf coffee should have a lower caffeine level.';
+                    event.target.setCustomValidity(message);
+
+                }
             }
 
         });
