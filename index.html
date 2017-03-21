@@ -5,7 +5,16 @@
     <meta charset="utf-8">
     <title>coffeerun</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
-    <!--  <link rel="stylesheet" href="stylesheets/styles.css"> -->
+    <!--  For gOld Challenge: Assignment 6
+    <link rel="stylesheet" href="stylesheets/styles.css"> -->
+
+    <!-- This style says that any form with
+    pseudo classes "invalid", "required", or "focus" in it will get a border color-->
+    <style>
+        form :focus:required:invalid {
+            border-color: #a94442;
+        }
+    </style>
 
 
 </head>
@@ -34,10 +43,9 @@
                                       it is also a boolean value containing true or false, if the autofocus is not there, then
                                       the value is false
 
+                             'required' makes sure that there is info in the text field
                         -->
-
-
-                        <input class="form-control" name="coffee" id="coffeeOrder" autofocus>
+                        <input class="form-control" name="coffee" id="coffeeOrder" autofocus required pattern="[a-zA-Z\s]+" />
                     </div>
                     <div class="form-group">
                         <label for="emailInput">Email</label>
@@ -45,7 +53,7 @@
                         <!--The value="" ensures that everytime you load the page, there is no value in the text field
                             "placeholder" is used to give the user an idea of what to input in
                         -->
-                        <input class="form-control" type="email" name="emailAddress" id="emailInput" value="" placeholder="dr@who.com">
+                        <input class="form-control" type="email" name="emailAddress" id="emailInput" value="" placeholder="dr@who.com" required/>
                     </div>
 
                     <!-- For radio buttons, we do not need "for" to label them. We do this because it automatically links
@@ -160,6 +168,7 @@
         </div>
     </section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" charset="utf-8"></script>
+    <script src="scripts/validation.js" charset="utf-8"></script>
     <script src="scripts/checklist.js" charset="utf-8"></script>
     <script src="scripts/formhandler.js" charset="utf-8"></script>
     <script src="scripts/datastore.js" charset="utf-8"></script>

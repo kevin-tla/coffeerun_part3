@@ -112,6 +112,7 @@
     };
 
 
+
     //Display the value of the slider as the person click and drags
     FormHandler.prototype.displaySlide = function() {
 
@@ -127,7 +128,7 @@
                 //weak
                 color = 'green';
             } else if (mouse.value < 75) {
-                //regular
+                //regular , orange
                 color = '#FFA500';
             } else {
                 //strong
@@ -140,8 +141,51 @@
 
     };
 
-    //  FormHandler.prototype.modal4U = function(strengthValue, sizeCoffee) {
-    // Get the modal
+
+    /*
+    Function validates as you type in the values
+    'on' method adds a lister
+    'setCustomValidity' is where you put in the changed message you want to output
+    */
+
+    FormHandler.prototype.addInputHandler = function(fn) {
+        console.log('Setting input handler for form');
+        this.$formElement.on('input', '[name="emailAddress"]', function(event) {
+            var emailAddress = event.target.value;
+            var message = '';
+            if (fn(emailAddress)) {
+                event.target.setCustomValidity('');
+            } else {
+
+                message = emailAddress + ' is not an authorized email address!';
+                event.target.setCustomValidity(message);
+            }
+        });
+    };
+
+    //For Silver Challenge Assignment 7
+    FormHandler.prototype.addInputHandlerSilverChallenge = function(fn1, fn2) {
+        console.log('starting to validate slider + coffee order');
+
+        this.$formElement.on('input', '[name="coffee"]', function(event) {
+            var coffeeisdecaf = event.target.value;
+            var coffeestrengthlv = document.getElementById('strengthLevel').value;
+
+            console.log(coffeestrengthlv);
+            fn2(coffeestrengthlv);
+            var message = '';
+
+            if (fn1(coffeeisdecaf) && fn2(coffeestrengthlv)) {
+                console.log('yay');
+                event.target.setCustomValidity('');
+            } else {
+                message = coffeeisdecaf + ' is not decaf.';
+                event.target.setCustomValidity(message);
+            }
+
+        });
+
+    };
 
 
     App.FormHandler = FormHandler;
